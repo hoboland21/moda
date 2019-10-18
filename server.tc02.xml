@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<!--
+  *************************************************************************
+  Moda Tomcat Instance Generation
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  Instance Name: BASE 2
+
+  *************************************************************************
+-->
+
+<!-- Note:  A "Server" is not itself a "Container", so you may not
+     define subcomponents such as "Valves" at this level.
+     Documentation at /docs/config/server.html
+ -->
+<Server port="8052" shutdown="SHUTDOWN">
+  <Listener className="org.apache.catalina.startup.VersionLoggerListener" />
+  <!-- Security listener. Documentation at /docs/config/listeners.html
+  <Listener className="org.apache.catalina.security.SecurityListener" />
+  -->
+  <!--APR library loader. Documentation at /docs/apr.html -->
+  <Listener className="org.apache.catalina.core.AprLifecycleListener" useAprConnector="true" SSLEngine="on" />
+  <!-- Prevent memory leaks due to use of particular java/javax APIs-->
+  <Listener className="org.apache.catalina.core.JreMemoryLeakPreventionListener" />
+  <Listener className="org.apache.catalina.mbeans.GlobalResourcesLifecycleListener" />
+  <Listener className="org.apache.catalina.core.ThreadLocalLeakPreventionListener" />
+
+  <Listener className="org.apache.catalina.mbeans.JmxRemoteLifecycleListener"
+          rmiRegistryPortPlatform="9022" rmiServerPortPlatform="9032" />
+
+  <!-- Global JNDI resources
+       Documentation at /docs/jndi-resources-howto.html
+  -->
+  <GlobalNamingResources>
+    <!-- Editable user database that can also be used by
+         UserDatabaseRealm to authenticate users
+    -->
+    <Resource name="UserDatabase" auth="Container"
+              type="org.apache.catalina.UserDatabase"
+              description="User database that can be updated and saved"
+              factory="org.apache.catalina.users.MemoryUserDatabaseFactory"
+              pathname="conf/tomcat-users.xml" />
+			  		
+
+       <Resource name="jdbc/facetsJNDI"
+            factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+            jmxEnabled="true"
+            auth="Container"
+            type="javax.sql.DataSource"
+            username="webuserx"
+            password="sPekere6"
+            driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+            url="jdbc:sqlserver://FacetsST2:49496;databaseName=facets;sendStringParametersAsUnicode=false"
+            maxActive="200"
+            maxIdle="10"
+            maxWait="29999"
+            initialSize="10"
+            defaultTransactionIsolation="READ_COMMITTED"
+            validationQuery="SELECT 1"
+            validationInterval="34000"
+            testOnBorrow="true"
+            removeAbandoned="true"
+            removeAbandonedOnBorrow="true"
+            removeAbandonedTimeout="120"
+            abandonWhenPercentageFull="50"
+            jdbcInterceptors="ResetAbandonedTimer;StatementCache(prepared=true)"
+            logAbandoned="true" />
+
+        <Resource name="jdbc/odsextJNDI"
+            factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+            jmxEnabled="true"
+            auth="Container"
+            type="javax.sql.DataSource"
+            username="webuserx"
+            password="sPekere6"
+            driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+            url="jdbc:sqlserver://FacetsST2:49496;databaseName=facetsext;sendStringParametersAsUnicode=false"
+            maxActive="200"
+            maxIdle="10"
+            maxWait="30000"
+            initialSize="10"
+            defaultTransactionIsolation="READ_COMMITTED"
+            validationQuery="SELECT 1"
+            validationInterval="34000"
+            testOnBorrow="true"
+            removeAbandoned="true"
+            removeAbandonedOnBorrow="true"
+            removeAbandonedTimeout="120"
+            abandonWhenPercentageFull="50"
+            jdbcInterceptors="ResetAbandonedTimer;StatementCache(prepared=true)"
+            logAbandoned="true" />
+
+	<Resource name="jdbc/cisNotes"
+            factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+            jmxEnabled="true"
+            auth="Container"
+            type="javax.sql.DataSource"
+            username="webuserx"
+            password="sPekere6"
+            driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+            url="jdbc:sqlserver://FacetsST2:49496;databaseName=mkt_web;sendStringParametersAsUnicode=false"
+            maxActive="10"
+            maxIdle="1"
+            maxWait="30000"
+            initialSize="10"
+            defaultTransactionIsolation="READ_COMMITTED"
+            validationQuery="SELECT 1"
+            validationInterval="34000"
+            testOnBorrow="true"
+            removeAbandoned="true"
+            removeAbandonedOnBorrow="true" 
+            removeAbandonedTimeout="120"
+            abandonWhenPercentageFull="50"
+            jdbcInterceptors="ResetAbandonedTimer;StatementCache(prepared=true)"	
+            logAbandoned="true" />
+			
+	<Resource name="jdbc/webUsageReportsJNDI"
+            factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+            jmxEnabled="true"
+            auth="Container"
+            type="javax.sql.DataSource"
+            username="webuserx"
+            password="sPekere6"
+            driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+            url="jdbc:sqlserver://FacetsST2:49496;databaseName=facetsext;sendStringParametersAsUnicode=false"
+            maxActive="10"
+            maxIdle="1"
+            maxWait="30000"
+            initialSize="10"
+            defaultTransactionIsolation="READ_COMMITTED"
+            validationQuery="SELECT 1"
+            validationInterval="34000"
+            testOnBorrow="true"
+            removeAbandoned="true"
+            removeAbandonedOnBorrow="true" 
+            removeAbandonedTimeout="120"
+            abandonWhenPercentageFull="50"
+            jdbcInterceptors="ResetAbandonedTimer;StatementCache(prepared=true)"	
+            logAbandoned="true" />						
+
+        <Resource name="jdbc/mktwebJNDI"
+            factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+            jmxEnabled="true"
+            auth="Container"
+            type="javax.sql.DataSource"
+            username="webuserx"
+            password="sPekere6"
+            driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+            url="jdbc:sqlserver://FacetsST2:49496;databaseName=mkt_web;sendStringParametersAsUnicode=false"
+            maxActive="25"
+            maxIdle="1"
+            maxWait="30000"
+            initialSize="1"
+            defaultTransactionIsolation="READ_COMMITTED"
+            validationQuery="SELECT 1"
+            validationInterval="34000"
+            testOnBorrow="true"
+            removeAbandoned="true"
+            removeAbandonedOnBorrow="true"
+            removeAbandonedTimeout="120"
+            abandonWhenPercentageFull="50"
+            jdbcInterceptors="ResetAbandonedTimer;StatementCache(prepared=true)"
+            logAbandoned="true" />
+
+        <Resource name="jdbc/odsrptJNDI"
+            factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+            jmxEnabled="true"
+            auth="Container"
+            type="javax.sql.DataSource"
+            username="webuserx"
+            password="sPekere6"
+            driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+            url="jdbc:sqlserver://FacetsST2:49496;databaseName=facetscrp;sendStringParametersAsUnicode=false"
+            maxActive="200"
+            maxIdle="10"
+            maxWait="30000"
+            initialSize="10"
+            defaultTransactionIsolation="READ_COMMITTED"
+            validationQuery="SELECT 1"
+            validationInterval="34000"
+            testOnBorrow="true"
+            removeAbandoned="true"
+            removeAbandonedOnBorrow="true"
+            removeAbandonedTimeout="120"
+            abandonWhenPercentageFull="50"
+            jdbcInterceptors="ResetAbandonedTimer;StatementCache(prepared=true)"
+            logAbandoned="true" />
+
+	<Resource name="jdbc/webCorpReportsJNDI" 
+	    factory="org.apache.tomcat.jdbc.pool.DataSourceFactory" 
+	    jmxEnabled="true" 
+	    auth="Container" 
+	    type="javax.sql.DataSource" 
+	    username="webcorpreportuserx" 
+	    password="BFMGNmfBUUvL" 
+	    driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" 
+	    url="jdbc:sqlserver://FacetsST2:49496;databaseName=webcorpreports;sendStringParametersAsUnicode=false" 
+	    maxActive="200" 
+	    maxIdle="10" 
+	    maxWait="30000" 
+	    initialSize="10" 
+	    defaultTransactionIsolation="READ_COMMITTED" 
+	    validationQuery="SELECT 1" 
+	    validationInterval="34000" 
+	    testOnBorrow="true" 
+	    removeAbandoned="true" 
+	    removeAbandonedOnBorrow="true"  
+	    removeAbandonedTimeout="120" 
+	    abandonWhenPercentageFull="50" 
+	    jdbcInterceptors="ResetAbandonedTimer;StatementCache(prepared=true)" 
+	    logAbandoned="true" />  
+	    
+	<Resource name="jdbc/eosJNDI" 
+	    factory="org.apache.tomcat.jdbc.pool.DataSourceFactory" 
+	    jmxEnabled="true" 
+	    auth="Container" 
+	    type="javax.sql.DataSource" 
+	    username="eosuserx" 
+	    password="sw!zupA7u@Ap" 
+	    driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" 
+	    url="jdbc:sqlserver://FacetsST2:49496;databaseName=eos;sendStringParametersAsUnicode=false" 
+	    maxActive="200" 
+	    maxIdle="10" 
+	    maxWait="30000" 
+	    initialSize="10" 
+	    defaultTransactionIsolation="READ_COMMITTED" 
+	    validationQuery="SELECT 1" 
+	    validationInterval="34000" 
+	    testOnBorrow="true" 
+	    removeAbandoned="true" 
+	    removeAbandonedOnBorrow="true" 
+	    removeAbandonedTimeout="120" 
+	    abandonWhenPercentageFull="50" 
+	    jdbcInterceptors="ResetAbandonedTimer;StatementCache(prepared=true)" 
+	    logAbandoned="true" /> 
+	    
+	<Resource name="jdbc/pdlJNDI"
+        factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+  	    jmxEnabled="true"
+	    auth="Container"
+	    type="javax.sql.DataSource"
+	    username="pdluserx"
+	    password="we1VLY4je9aI"
+	    driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+	    url="jdbc:sqlserver://FacetsST2:49496;databaseName=pdl;sendStringParametersAsUnicode=false"
+	    maxActive="200"
+	    maxIdle="10"
+ 	    maxWait="30000"
+ 	    initialSize="10"
+ 	    defaultTransactionIsolation="READ_COMMITTED"
+    	validationQuery="SELECT 1"
+  	    validationInterval="34000"
+  	    testOnBorrow="true"
+ 	    removeAbandoned="true"
+ 	    removeAbandonedOnBorrow="true"
+ 	    removeAbandonedTimeout="120"
+ 	    abandonWhenPercentageFull="50"
+ 	    jdbcInterceptors="ResetAbandonedTimer;StatementCache(prepared=true)"
+ 	    logAbandoned="true" />	
+	    
+	<Resource name="jdbc/webAnalyticsJNDI"
+	    factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+	    jmxEnabled="true"
+   	    auth="Container"
+	    type="javax.sql.DataSource"
+	    username="webanalyticsuserx"
+	    password="TmWYzPKBT17u"
+ 	    driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+ 	    url="jdbc:sqlserver://FacetsST2:49496;databaseName=webanalytics;sendStringParametersAsUnicode=false"
+	    maxActive="200"
+ 	    maxIdle="10"
+ 	    maxWait="30000"
+ 	    initialSize="10"
+ 	    defaultTransactionIsolation="READ_COMMITTED"
+	    validationQuery="SELECT 1"
+	    validationInterval="34000"
+	    testOnBorrow="true"
+	    removeAbandoned="true"
+	    removeAbandonedOnBorrow="true"
+	    removeAbandonedTimeout="120"
+	    abandonWhenPercentageFull="50"
+	    jdbcInterceptors="ResetAbandonedTimer;StatementCache(prepared=true)"
+	    logAbandoned="true" />
+ 	    
+	<Resource name="jdbc/webNotesJNDI"
+	    factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+	    jmxEnabled="true"
+	    auth="Container"
+	    type="javax.sql.DataSource"
+	    username="webnotesuserx"
+	    password="nfep6ywIJRq1"
+	    driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+ 	    url="jdbc:sqlserver://FacetsST2:49496;databaseName=webnotes;sendStringParametersAsUnicode=false"
+ 	    maxActive="200"
+ 	    maxIdle="10"
+	    maxWait="30000"
+	    initialSize="10"
+	    defaultTransactionIsolation="READ_COMMITTED"
+	    validationQuery="SELECT 1"
+	    validationInterval="34000"
+	    testOnBorrow="true"
+	    removeAbandoned="true"
+	    removeAbandonedOnBorrow="true"
+	    removeAbandonedTimeout="120"
+	    abandonWhenPercentageFull="50"
+ 	    jdbcInterceptors="ResetAbandonedTimer;StatementCache(prepared=true)"
+	    logAbandoned="true" /> 
+	    
+	<Resource name="jdbc/webFormsJNDI"
+ 	    factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+ 	    jmxEnabled="true"
+ 	    auth="Container"
+ 	    type="javax.sql.DataSource"
+ 	    username="webformsuserx"
+	    password="XvQP2WU0vc5B"
+ 	    driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+	    url="jdbc:sqlserver://FacetsST2:49496;databaseName=webforms;sendStringParametersAsUnicode=false"
+ 	    maxActive="200"
+ 	    maxIdle="10"
+ 	    maxWait="30000"
+ 	    initialSize="10"
+ 	    defaultTransactionIsolation="READ_COMMITTED"
+ 	    validationQuery="SELECT 1"
+ 	    validationInterval="34000"
+ 	    testOnBorrow="true"
+ 	    removeAbandoned="true"
+ 	    removeAbandonedOnBorrow="true"
+ 	    removeAbandonedTimeout="120"
+ 	    abandonWhenPercentageFull="50"
+ 	    jdbcInterceptors="ResetAbandonedTimer;StatementCache(prepared=true)"
+ 	    logAbandoned="true" />
+
+
+	
+  </GlobalNamingResources>
+
+  <!-- A "Catalina Service"
+       Documentation at /docs/config/service.html
+   -->
+  <Service name="Catalina">
+
+    <!--The connectors can use a shared executor, you can define one or more named thread pools-->
+    <!--
+    <Executor name="tomcatThreadPool" namePrefix="catalina-exec-"
+        maxThreads="150" minSpareThreads="4"/>
+    -->
+
+
+    <!-- A "Connector" represents an endpoint by which requests are received
+         and responses are returned. Documentation at :
+         Java HTTP Connector: /docs/config/http.html
+         Java AJP  Connector: /docs/config/ajp.html
+         APR (HTTP/AJP) Connector: /docs/apr.html
+         Define a non-SSL/TLS HTTP/1.1 Connector on specified port
+    -->
+    <Connector port="8082" protocol="org.apache.coyote.http11.Http11Nio2Protocol" maxHttpHeaderSize="8192"
+               maxThreads="200" minSpareThreads="25"
+               enableLookups="false" redirectPort="443" acceptCount="100"
+               connectionTimeout="180000" disableUploadTimeout="true" />
+    <!-- A "Connector" using the shared thread pool-->
+    <!--
+    <Connector executor="tomcatThreadPool"
+               port="8082" protocol="HTTP/1.1"
+               connectionTimeout="60000"
+               redirectPort="443" />
+    -->
+
+    <!-- Define a SSL/TLS HTTP/1.1 Connector on port 443
+         This connector uses the NIO implementation with the JSSE engine. When
+         using the JSSE engine, the JSSE configuration attributes must be used.
+    -->
+
+    <!-- Secure Interface, uncomment for using SSL/TLS ... -->
+    <!--
+    <Connector port="443" protocol="org.apache.coyote.http11.Http11NioProtocol"
+               sslImplementationName="org.apache.tomcat.util.net.jsse.JSSEImplementation"
+               maxHttpHeaderSize="8192"
+               maxThreads="200" minSpareThreads="25"
+               enableLookups="false" disableUploadTimeout="true"
+               SSLEnabled="true" scheme="https" secure="true"
+               keystoreFile="${catalina.home}/etc/.keystore" keystorePass="tcmoda"
+               clientAuth="false" sslProtocol="TLS"/>
+    -->
+
+
+    <!-- Define a SSL/TLS HTTP/1.1 Connector on port 443 with HTTP/2
+         This connector uses the APR/native implementation. When using the
+         APR/native implementation or the OpenSSL engine with NIO or NIO2 then
+         the OpenSSL configuration attributes must be used.
+    -->
+    <!--
+    <Connector port="443" protocol="org.apache.coyote.http11.Http11AprProtocol"
+               maxThreads="150" SSLEnabled="true" >
+        <UpgradeProtocol className="org.apache.coyote.http2.Http2Protocol" />
+        <SSLHostConfig>
+            <Certificate certificateKeyFile="conf/localhost-rsa-key.pem"
+                         certificateFile="conf/localhost-rsa-cert.pem"
+                         certificateChainFile="conf/localhost-rsa-chain.pem"
+                         type="RSA" />
+        </SSLHostConfig>
+    </Connector>
+    -->
+
+    <!-- Define an AJP 1.3 Connector on port 8092 -->
+    <Connector port="8092" protocol="AJP/1.3" redirectPort="443" />
+
+
+    <!-- An Engine represents the entry point (within Catalina) that processes
+         every request.  The Engine implementation for Tomcat stand alone
+         analyzes the HTTP headers included with the request, and passes them
+         on to the appropriate Host (virtual host).
+         Documentation at /docs/config/engine.html -->
+
+    <!-- You should set jvmRoute to support load-balancing via AJP -->
+    <Engine name="Catalina" defaultHost="localhost" jvmRoute="tcjvm02">
+
+      <!--For clustering, please take a look at documentation at:
+          /docs/cluster-howto.html  (simple how to)
+          /docs/config/cluster.html (reference documentation) -->
+      <!--
+      <Cluster className="org.apache.catalina.ha.tcp.SimpleTcpCluster"/>
+      -->
+
+      <!-- Use the LockOutRealm to prevent attempts to guess user passwords
+           via a brute-force attack -->
+      <Realm className="org.apache.catalina.realm.LockOutRealm">
+        <!-- This Realm uses the UserDatabase configured in the global JNDI
+             resources under the key "UserDatabase".  Any edits
+             that are performed against this UserDatabase are immediately
+             available for use by the Realm.  -->
+        <Realm className="org.apache.catalina.realm.UserDatabaseRealm"
+               resourceName="UserDatabase"/>
+      </Realm>
+
+      <Host name="localhost"  appBase="webapps"
+            unpackWARs="true" autoDeploy="true">
+		  
+        <!-- Access log processes all example.
+             Documentation at: /docs/config/valve.html
+             Note: The pattern used is equivalent to using pattern="common" -->
+
+	<Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs"
+                prefix="tc02_localhost_access" suffix=".log" rotatable="false" 
+                requestAttributesEnabled="true" conditionUnless="ignore-access-log"
+                encoding="utf-8" pattern='%{yyyy/MM/dd @ hh:mm:ss.S a z}t %h %l %u "%r" %{requestBodyLength}r %s %b "%{Referer}i" "%{User-agent}i" %D "%S" "%{Location}o"' />
+
+        <Valve className="org.apache.catalina.valves.RemoteIpValve" protocolHeader="x-forwarded-proto" remoteIpHeader="x-forwarded-for" requestAttributesEnabled="true" />
+
+      </Host>
+    </Engine>
+  </Service>
+</Server>
