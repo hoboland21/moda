@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DEFAULT_FILE="~/default.txt"
+DEFAULT_FILE="default.txt"
 PARAMS=""
 #==================================
 function read-line {
