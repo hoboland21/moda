@@ -15,8 +15,9 @@ function read-line {
 }
 #==================================
 function execute-line {
+    curl --user deployer:tcmoda http://rh-$ENV:808$TC/manager/text/stop?path=/$APPLICATION   
+    sleep $TIMER 
     curl --user deployer:tcmoda http://rh-$ENV:808$TC/manager/text/start?path=/$APPLICATION   
-    #sleep $TIMER 
 }
 #==================================
 function main {
