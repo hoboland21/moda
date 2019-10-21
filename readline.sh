@@ -47,43 +47,29 @@ function load_defaults {
 
 while (( "$#" )); do
     case "$1" in
-        -f|--file)   DEFAULT_FILE=$2; load_defaults; shift 2  ;;
+        -f|--file) DEFAULT_FILE=$2; load_defaults; shift 2  ;;
 
-        --start)
-        APPSTART=1
-        shift 1
-        ;;
+        --start) APPSTART=1;  shift 1;  ;;
 
-        --stop)
-        APPSTART=0
-        shift 1
-        ;;
+        --stop)  APPSTART=0;  shift 1;  ;;
 
-        -a|--app)
-        APPNAME=$2
-        shift 2
-        ;;
+        -a|--app) APPNAME=$2;  shift 2;   ;;
         
-        -t|--tc)
-        TC=$2
-        shift 2
-        ;;
+        -t|--tc)  TC=$2;      shift 2;    ;;
 
-        -e|--env)
-        ENVNAME=$2
-        shift 2
-        ;;
+        -e|--env) ENVNAME=$2; shift 2     ;;
 
-        -w|--wait)
-        APPWAIT=$2
-        shift 2
-        ;;
-
+        -w|--wait) APPWAIT=$2;  shift 2    ;;
 
         -?|--help)
         echo "
-
-        Testing comments
+            -s  --start    Start Application(s)
+            -x  --stop     Stop Application(s) (req -i -e -a)
+            -a  --app      Application Name
+            -i  --tc0      Instance number no leading 0 TC0x
+            -e  --env      Environment stg-01, stg2-01  
+            -w  --wait     Wait time delay after start in seconds
+            -p  --print    Print out list of applications (req -i -e -a)
 
         "     
         shift 1
