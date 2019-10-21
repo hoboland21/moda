@@ -15,8 +15,6 @@ function read-line {
 }
 #==================================
 function main {
-
-
     egrep -v '^#|^$'  < $DEFAULT_FILE | 
     { 
         while read line 
@@ -34,7 +32,8 @@ function debug {
         echo TC = $TC
         echo ENVNAME = $ENVNAME
         echo APPWAIT = $APPWAIT
-
+        echo  Default File Contents
+        main
 }
 #==================================
 function load_defaults {
@@ -44,6 +43,9 @@ function load_defaults {
     
     fi
 }
+#==================================
+# Decision Tree
+#==================================
 
 while (( "$#" )); do
     case "$1" in
@@ -76,15 +78,9 @@ while (( "$#" )); do
         ;;
 
 
-        -v|--verbose )
-        shift 
-        debug
-        ;;
+        -v|--verbose )  shift ;   debug;   ;;
 
-        --) # end argument parsing
-        shift
-        break
-        ;;
+        --)  shift;  break  ;;
  
         -*|--*=) # unsupported flags
         echo "Error: Unsupported flag $1" >&2
@@ -97,8 +93,6 @@ while (( "$#" )); do
         ;;
     esac
 done
-
-
-main
+#==================================
 #==================================
 
