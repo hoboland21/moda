@@ -1,0 +1,5 @@
+# applications to be started by default
+# TC instance:application name:time in seconds for wait after starting
+
+TC06:modaWebInterface:14
+TC07:otherProgram:12
